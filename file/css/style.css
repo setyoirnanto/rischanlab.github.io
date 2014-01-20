@@ -1172,7 +1172,29 @@ p.subtitle a{
 		padding-bottom:50px;
 	}
 
-
+#homee{
+	background:#fff;
+	padding-bottom:40px;
+	padding-top:80px;
+}
+#homee .social-icons{
+	position:relative;
+	width:1000px;
+	text-align:center;
+	margin:0 auto 25px auto;
+}
+#homee .social-icons li{
+	margin:0px;
+	display:-moz-inline-stack;
+    	display:inline-block;
+    	vertical-align:top;
+    	zoom:1;
+    	*display:inline;
+    	float:none;
+}
+#homee .social-icons li a{
+	text-indent:9999px;
+}
 /* - 0.0. - FOOTER
 ---------------------------------------------- */
 #footer{
