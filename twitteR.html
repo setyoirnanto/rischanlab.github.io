@@ -207,6 +207,30 @@ twitCred &lt;- OAuthFactory$new(consumerKey=consumerKey,
 twitCred$handshake()
 </code></pre>
 
+<p>if you have problem with the certificate, for example you get error like this </p>
+
+<pre><code class="r">&quot;Error in function (type, msg, asError = TRUE)  : 
+  SSL certificate problem, verify that the CA cert is OK. Details:
+error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed&quot;
+</code></pre>
+
+<p>you need to download the certificate..</p>
+
+<pre><code class="r">reqURL &lt;- &quot;https://api.twitter.com/oauth/request_token&quot;
+accessURL &lt;- &quot;https://api.twitter.com/oauth/access_token&quot;
+authURL &lt;- &quot;https://api.twitter.com/oauth/authorize&quot;
+consumerKey &lt;- &quot;Mjn6tdsadsadkasdklad2SV1l&quot;
+consumerSecret &lt;- &quot;58Z7Eldsdfaslkf;asldsaoeorjkfksaVCQtvri&quot;
+twitCred &lt;- OAuthFactory$new(consumerKey=consumerKey,
+                             consumerSecret=consumerSecret,
+                             requestURL=reqURL,
+                             accessURL=accessURL,
+                             authURL=authURL)
+download.file(url=&quot;http://curl.haxx.se/ca/cacert.pem&quot;,
+              destfile=&quot;cacert.pem&quot;)
+twitCred$handshake(cainfo=&quot;cacert.pem&quot;)
+</code></pre>
+
 <p>After you run this code you will see in R console message like this :</p>
 
 <pre><code class="r">To enable the connection, please direct your web browser to: 
