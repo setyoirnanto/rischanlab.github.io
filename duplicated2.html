@@ -1,0 +1,2524 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Data Test Report v2</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Data Test Report v2</h1>
+
+<p>Created by </p>
+
+<p><strong>Rischan Mafrur</strong></p>
+
+<p>Chonnam National University of South Korea</p>
+
+<p>June 19, 2014</p>
+
+<p>Data test report and Checking Duplicated Data</p>
+
+<p>Set Up Databases</p>
+
+<pre><code class="r">library(&quot;RSQLite&quot;)
+</code></pre>
+
+<pre><code>## Loading required package: DBI
+</code></pre>
+
+<pre><code class="r">driver &lt;- dbDriver(&quot;SQLite&quot;)
+
+</code></pre>
+
+<p>Data information in 50 databases (File info: size and date modified, Nrow/numbers of row data, table/show distribution data)</p>
+
+<p>This data recorded from 6/16/2014 7:54 PM until 6/18/2014 11:06 PM</p>
+
+<pre><code class="r">fshow &lt;- function(i){
+     cat(&quot; \n&quot;)
+     cat(sprintf(&quot;Printing file infromation DB : %d&quot;,i))
+     cat(&quot; \n&quot;)
+     print(file.info(eval(sprintf(&quot;x (%s).db&quot;,i)))[c(1,4)])
+     cat(&quot; \n&quot;)
+     cat(sprintf(&quot;Printing Number of rows of data , DB : %d&quot;,i))
+     cat(&quot; \n&quot;)
+     print(nrow(eval(parse(text=paste(&quot;df&quot;, i, sep = &quot;&quot;)))))
+     cat(&quot; \n&quot;)
+     cat(sprintf(&quot;Data distribution each probes,  DB : %d&quot;,i))
+     cat(&quot; \n&quot;)
+     print(table(eval(parse(text=paste(&quot;df&quot;, i, sep = &quot;&quot;)))$name))
+     cat(&quot; \n&quot;)
+     cat(sprintf(&quot;Count duplicated data (True means any duplicated data), DB : %d&quot;,i))
+     cat(&quot; \n&quot;)
+     print(summary(duplicated(eval(parse(text=paste(&quot;df&quot;,i, sep=&quot;&quot;)))[,c(2,4)])))
+}
+
+lapply(1:50, function(i) fshow(i))
+</code></pre>
+
+<pre><code>##  
+## Printing file infromation DB : 1 
+##           size               mtime
+## x (1).db 24576 2014-06-16 19:54:58
+##  
+## Printing Number of rows of data , DB : 1 
+## [1] 1
+##  
+## Data distribution each probes,  DB : 1 
+## 
+## edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                  1 
+##  
+## Count duplicated data (True means any duplicated data), DB : 1 
+##    Mode   FALSE    NA&#39;s 
+## logical       1       0 
+##  
+## Printing file infromation DB : 2 
+##            size               mtime
+## x (2).db 892928 2014-06-16 19:56:18
+##  
+## Printing Number of rows of data , DB : 2 
+## [1] 2200
+##  
+## Data distribution each probes,  DB : 2 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                         7 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       378 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         1 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                       190 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         6 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       523 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                       530 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                       227 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                        11 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         2 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       322 
+##  
+## Count duplicated data (True means any duplicated data), DB : 2 
+##    Mode   FALSE    TRUE    NA&#39;s 
+## logical    1989     211       0 
+##  
+## Printing file infromation DB : 3 
+##             size               mtime
+## x (3).db 4448256 2014-06-16 20:55:30
+##  
+## Printing Number of rows of data , DB : 3 
+## [1] 14487
+##  
+## Data distribution each probes,  DB : 3 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        47 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                        27 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         2 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       103 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       832 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7154 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5089 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       712 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        31 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         7 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        10 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       339 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       110 
+##  
+## Count duplicated data (True means any duplicated data), DB : 3 
+##    Mode   FALSE    NA&#39;s 
+## logical   14487       0 
+##  
+## Printing file infromation DB : 4 
+##             size               mtime
+## x (4).db 1966080 2014-06-16 21:55:28
+##  
+## Printing Number of rows of data , DB : 4 
+## [1] 13626
+##  
+## Data distribution each probes,  DB : 4 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        56 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        11 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6760 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5855 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       775 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        32 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       113 
+##  
+## Count duplicated data (True means any duplicated data), DB : 4 
+##    Mode   FALSE    NA&#39;s 
+## logical   13626       0 
+##  
+## Printing file infromation DB : 5 
+##             size               mtime
+## x (5).db 1900544 2014-06-16 22:55:20
+##  
+## Printing Number of rows of data , DB : 5 
+## [1] 13290
+##  
+## Data distribution each probes,  DB : 5 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        74 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7287 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4945 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       806 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        14 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        14 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        13 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       101 
+##  
+## Count duplicated data (True means any duplicated data), DB : 5 
+##    Mode   FALSE    NA&#39;s 
+## logical   13290       0 
+##  
+## Printing file infromation DB : 6 
+##             size               mtime
+## x (6).db 2793472 2014-06-16 23:55:33
+##  
+## Printing Number of rows of data , DB : 6 
+## [1] 19553
+##  
+## Data distribution each probes,  DB : 6 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        71 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                     11022 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      7222 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       935 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        21 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        26 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        13 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       207 
+##  
+## Count duplicated data (True means any duplicated data), DB : 6 
+##    Mode   FALSE    NA&#39;s 
+## logical   19553       0 
+##  
+## Printing file infromation DB : 7 
+##             size               mtime
+## x (7).db 2215936 2014-06-17 00:55:18
+##  
+## Printing Number of rows of data , DB : 7 
+## [1] 15516
+##  
+## Data distribution each probes,  DB : 7 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        91 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        15 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      8871 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5420 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       892 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        19 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       184 
+##  
+## Count duplicated data (True means any duplicated data), DB : 7 
+##    Mode   FALSE    NA&#39;s 
+## logical   15516       0 
+##  
+## Printing file infromation DB : 8 
+##             size               mtime
+## x (8).db 2568192 2014-06-17 01:55:36
+##  
+## Printing Number of rows of data , DB : 8 
+## [1] 16267
+##  
+## Data distribution each probes,  DB : 8 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        55 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       304 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        18 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      8952 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5843 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       913 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       145 
+##  
+## Count duplicated data (True means any duplicated data), DB : 8 
+##    Mode   FALSE    NA&#39;s 
+## logical   16267       0 
+##  
+## Printing file infromation DB : 9 
+##             size               mtime
+## x (9).db 2260992 2014-06-17 02:55:26
+##  
+## Printing Number of rows of data , DB : 9 
+## [1] 15623
+##  
+## Data distribution each probes,  DB : 9 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        68 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                        55 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        10 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      9049 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5360 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       901 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       145 
+##  
+## Count duplicated data (True means any duplicated data), DB : 9 
+##    Mode   FALSE    NA&#39;s 
+## logical   15623       0 
+##  
+## Printing file infromation DB : 10 
+##              size               mtime
+## x (10).db 2736128 2014-06-17 03:55:33
+##  
+## Printing Number of rows of data , DB : 10 
+## [1] 19102
+##  
+## Data distribution each probes,  DB : 10 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        87 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         9 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      9952 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      8034 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       843 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         2 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       137 
+##  
+## Count duplicated data (True means any duplicated data), DB : 10 
+##    Mode   FALSE    NA&#39;s 
+## logical   19102       0 
+##  
+## Printing file infromation DB : 11 
+##              size               mtime
+## x (11).db 1810432 2014-06-17 04:55:19
+##  
+## Printing Number of rows of data , DB : 11 
+## [1] 12751
+##  
+## Data distribution each probes,  DB : 11 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        60 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        11 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        10 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7366 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4366 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       785 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        11 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       130 
+##  
+## Count duplicated data (True means any duplicated data), DB : 11 
+##    Mode   FALSE    NA&#39;s 
+## logical   12751       0 
+##  
+## Printing file infromation DB : 12 
+##              size               mtime
+## x (12).db 2138112 2014-06-17 05:55:20
+##  
+## Printing Number of rows of data , DB : 12 
+## [1] 14789
+##  
+## Data distribution each probes,  DB : 12 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        64 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        11 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7837 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5785 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       849 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        13 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       204 
+##  
+## Count duplicated data (True means any duplicated data), DB : 12 
+##    Mode   FALSE    NA&#39;s 
+## logical   14789       0 
+##  
+## Printing file infromation DB : 13 
+##              size               mtime
+## x (13).db 1953792 2014-06-17 06:55:17
+##  
+## Printing Number of rows of data , DB : 13 
+## [1] 13658
+##  
+## Data distribution each probes,  DB : 13 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        73 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        10 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7384 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5221 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       786 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       148 
+##  
+## Count duplicated data (True means any duplicated data), DB : 13 
+##    Mode   FALSE    NA&#39;s 
+## logical   13658       0 
+##  
+## Printing file infromation DB : 14 
+##              size               mtime
+## x (14).db 1957888 2014-06-17 07:55:25
+##  
+## Printing Number of rows of data , DB : 14 
+## [1] 13378
+##  
+## Data distribution each probes,  DB : 14 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        72 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                        40 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        14 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7175 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5047 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       803 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       192 
+##  
+## Count duplicated data (True means any duplicated data), DB : 14 
+##    Mode   FALSE    NA&#39;s 
+## logical   13378       0 
+##  
+## Printing file infromation DB : 15 
+##              size               mtime
+## x (15).db 2371584 2014-06-17 08:32:06
+##  
+## Printing Number of rows of data , DB : 15 
+## [1] 12279
+##  
+## Data distribution each probes,  DB : 15 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        47 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       576 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         7 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         8 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                        46 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         3 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       239 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6318 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4031 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       590 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         8 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       250 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       147 
+##  
+## Count duplicated data (True means any duplicated data), DB : 15 
+##    Mode   FALSE    NA&#39;s 
+## logical   12279       0 
+##  
+## Printing file infromation DB : 16 
+##              size               mtime
+## x (16).db 4616192 2014-06-17 09:31:11
+##  
+## Printing Number of rows of data , DB : 16 
+## [1] 14873
+##  
+## Data distribution each probes,  DB : 16 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        70 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       102 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         5 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                        71 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       258 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       832 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6951 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5450 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       698 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       365 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        34 
+##  
+## Count duplicated data (True means any duplicated data), DB : 16 
+##    Mode   FALSE    NA&#39;s 
+## logical   14873       0 
+##  
+## Printing file infromation DB : 17 
+##              size               mtime
+## x (17).db 1736704 2014-06-17 10:31:18
+##  
+## Printing Number of rows of data , DB : 17 
+## [1] 12415
+##  
+## Data distribution each probes,  DB : 17 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        77 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7380 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4280 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       597 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        18 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        18 
+##  
+## Count duplicated data (True means any duplicated data), DB : 17 
+##    Mode   FALSE    NA&#39;s 
+## logical   12415       0 
+##  
+## Printing file infromation DB : 18 
+##              size               mtime
+## x (18).db 1318912 2014-06-17 17:10:15
+##  
+## Printing Number of rows of data , DB : 18 
+## [1] 9139
+##  
+## Data distribution each probes,  DB : 18 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        35 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         7 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         2 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                         7 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      4931 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      3651 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       409 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                         9 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        32 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        23 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         6 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                         7 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        20 
+##  
+## Count duplicated data (True means any duplicated data), DB : 18 
+##    Mode   FALSE    NA&#39;s 
+## logical    9139       0 
+##  
+## Printing file infromation DB : 19 
+##              size               mtime
+## x (19).db 5619712 2014-06-17 18:10:13
+##  
+## Printing Number of rows of data , DB : 19 
+## [1] 19033
+##  
+## Data distribution each probes,  DB : 19 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        62 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       359 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         9 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                       117 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         3 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       492 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       832 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      8543 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6864 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       734 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        16 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        36 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         9 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       611 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       321 
+##  
+## Count duplicated data (True means any duplicated data), DB : 19 
+##    Mode   FALSE    NA&#39;s 
+## logical   19033       0 
+##  
+## Printing file infromation DB : 20 
+##              size               mtime
+## x (20).db 2015232 2014-06-17 19:10:15
+##  
+## Printing Number of rows of data , DB : 20 
+## [1] 13752
+##  
+## Data distribution each probes,  DB : 20 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        55 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6530 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6139 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       710 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        38 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       253 
+##  
+## Count duplicated data (True means any duplicated data), DB : 20 
+##    Mode   FALSE    NA&#39;s 
+## logical   13752       0 
+##  
+## Printing file infromation DB : 21 
+##              size               mtime
+## x (21).db 1970176 2014-06-17 19:46:18
+##  
+## Printing Number of rows of data , DB : 21 
+## [1] 9959
+##  
+## Data distribution each probes,  DB : 21 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        37 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       359 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         6 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                        91 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         3 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       499 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      4109 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      3961 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       454 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        18 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         1 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         8 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       293 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       117 
+##  
+## Count duplicated data (True means any duplicated data), DB : 21 
+##    Mode   FALSE    NA&#39;s 
+## logical    9959       0 
+##  
+## Printing file infromation DB : 22 
+##              size               mtime
+## x (22).db 4710400 2014-06-17 20:45:15
+##  
+## Printing Number of rows of data , DB : 22 
+## [1] 16150
+##  
+## Data distribution each probes,  DB : 22 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        73 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         4 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                        26 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       832 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7180 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6791 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       636 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        27 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        25 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        14 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       326 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       192 
+##  
+## Count duplicated data (True means any duplicated data), DB : 22 
+##    Mode   FALSE    NA&#39;s 
+## logical   16150       0 
+##  
+## Printing file infromation DB : 23 
+##              size               mtime
+## x (23).db 1826816 2014-06-17 21:45:15
+##  
+## Printing Number of rows of data , DB : 23 
+## [1] 12447
+##  
+## Data distribution each probes,  DB : 23 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        58 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6153 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5285 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       667 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        30 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       231 
+##  
+## Count duplicated data (True means any duplicated data), DB : 23 
+##    Mode   FALSE    NA&#39;s 
+## logical   12447       0 
+##  
+## Printing file infromation DB : 24 
+##              size               mtime
+## x (24).db 1798144 2014-06-17 22:45:20
+##  
+## Printing Number of rows of data , DB : 24 
+## [1] 12364
+##  
+## Data distribution each probes,  DB : 24 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        59 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6221 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5209 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       642 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        35 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         4 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         4 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       165 
+##  
+## Count duplicated data (True means any duplicated data), DB : 24 
+##    Mode   FALSE    NA&#39;s 
+## logical   12364       0 
+##  
+## Printing file infromation DB : 25 
+##              size               mtime
+## x (25).db 1372160 2014-06-17 23:45:17
+##  
+## Printing Number of rows of data , DB : 25 
+## [1] 9669
+##  
+## Data distribution each probes,  DB : 25 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        51 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      5220 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      3763 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       574 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        32 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         3 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##  
+## Count duplicated data (True means any duplicated data), DB : 25 
+##    Mode   FALSE    NA&#39;s 
+## logical    9669       0 
+##  
+## Printing file infromation DB : 26 
+##              size               mtime
+## x (26).db 1601536 2014-06-18 00:45:14
+##  
+## Printing Number of rows of data , DB : 26 
+## [1] 11055
+##  
+## Data distribution each probes,  DB : 26 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        51 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6116 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      3968 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       640 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        34 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         4 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       215 
+##  
+## Count duplicated data (True means any duplicated data), DB : 26 
+##    Mode   FALSE    NA&#39;s 
+## logical   11055       0 
+##  
+## Printing file infromation DB : 27 
+##              size               mtime
+## x (27).db 2121728 2014-06-18 01:45:24
+##  
+## Printing Number of rows of data , DB : 27 
+## [1] 13833
+##  
+## Data distribution each probes,  DB : 27 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        43 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       130 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7012 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5628 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       693 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        34 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       269 
+##  
+## Count duplicated data (True means any duplicated data), DB : 27 
+##    Mode   FALSE    NA&#39;s 
+## logical   13833       0 
+##  
+## Printing file infromation DB : 28 
+##              size               mtime
+## x (28).db 2035712 2014-06-18 02:45:14
+##  
+## Printing Number of rows of data , DB : 28 
+## [1] 12463
+##  
+## Data distribution each probes,  DB : 28 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        62 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       229 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      5704 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5425 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       689 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        30 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         4 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       295 
+##  
+## Count duplicated data (True means any duplicated data), DB : 28 
+##    Mode   FALSE    NA&#39;s 
+## logical   12463       0 
+##  
+## Printing file infromation DB : 29 
+##              size               mtime
+## x (29).db 2023424 2014-06-18 03:45:14
+##  
+## Printing Number of rows of data , DB : 29 
+## [1] 13786
+##  
+## Data distribution each probes,  DB : 29 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        51 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6854 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5829 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       692 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        35 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        11 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        12 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       277 
+##  
+## Count duplicated data (True means any duplicated data), DB : 29 
+##    Mode   FALSE    NA&#39;s 
+## logical   13786       0 
+##  
+## Printing file infromation DB : 30 
+##             size               mtime
+## x (30).db 364544 2014-06-18 04:06:19
+##  
+## Printing Number of rows of data , DB : 30 
+## [1] 2231
+##  
+## Data distribution each probes,  DB : 30 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        14 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         1 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         2 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                        18 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      1040 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                       949 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       116 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                         8 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         2 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         1 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         1 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                         8 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        70 
+##  
+## Count duplicated data (True means any duplicated data), DB : 30 
+##    Mode   FALSE    NA&#39;s 
+## logical    2231       0 
+##  
+## Printing file infromation DB : 31 
+##              size               mtime
+## x (31).db 6164480 2014-06-18 05:06:21
+##  
+## Printing Number of rows of data , DB : 31 
+## [1] 23453
+##  
+## Data distribution each probes,  DB : 31 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                       103 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       359 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                       117 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         3 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       481 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       832 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                     11911 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      7617 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                      1115 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        37 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         3 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         1 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       611 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       238 
+##  
+## Count duplicated data (True means any duplicated data), DB : 31 
+##    Mode   FALSE    NA&#39;s 
+## logical   23453       0 
+##  
+## Printing file infromation DB : 32 
+##              size               mtime
+## x (32).db 2883584 2014-06-18 06:06:28
+##  
+## Printing Number of rows of data , DB : 32 
+## [1] 20408
+##  
+## Data distribution each probes,  DB : 32 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        77 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                     11877 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      7053 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                      1123 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        36 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       218 
+##  
+## Count duplicated data (True means any duplicated data), DB : 32 
+##    Mode   FALSE    NA&#39;s 
+## logical   20408       0 
+##  
+## Printing file infromation DB : 33 
+##              size               mtime
+## x (33).db 2531328 2014-06-18 07:06:19
+##  
+## Printing Number of rows of data , DB : 33 
+## [1] 17837
+##  
+## Data distribution each probes,  DB : 33 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        73 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                     10323 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6113 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                      1045 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        30 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       230 
+##  
+## Count duplicated data (True means any duplicated data), DB : 33 
+##    Mode   FALSE    NA&#39;s 
+## logical   17837       0 
+##  
+## Printing file infromation DB : 34 
+##              size               mtime
+## x (34).db 2400256 2014-06-18 08:06:26
+##  
+## Printing Number of rows of data , DB : 34 
+## [1] 16772
+##  
+## Data distribution each probes,  DB : 34 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        81 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      9215 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6262 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       942 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        34 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       214 
+##  
+## Count duplicated data (True means any duplicated data), DB : 34 
+##    Mode   FALSE    NA&#39;s 
+## logical   16772       0 
+##  
+## Printing file infromation DB : 35 
+##              size               mtime
+## x (35).db 2899968 2014-06-18 09:06:27
+##  
+## Printing Number of rows of data , DB : 35 
+## [1] 20128
+##  
+## Data distribution each probes,  DB : 35 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        97 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                     10286 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      8247 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                      1179 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        32 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         5 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       248 
+##  
+## Count duplicated data (True means any duplicated data), DB : 35 
+##    Mode   FALSE    NA&#39;s 
+## logical   20128       0 
+##  
+## Printing file infromation DB : 36 
+##              size               mtime
+## x (36).db 2355200 2014-06-18 10:06:27
+##  
+## Printing Number of rows of data , DB : 36 
+## [1] 15932
+##  
+## Data distribution each probes,  DB : 36 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        56 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                        84 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      8713 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5930 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       869 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        25 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         7 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        10 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       214 
+##  
+## Count duplicated data (True means any duplicated data), DB : 36 
+##    Mode   FALSE    NA&#39;s 
+## logical   15932       0 
+##  
+## Printing file infromation DB : 37 
+##              size               mtime
+## x (37).db 2813952 2014-06-18 11:06:22
+##  
+## Printing Number of rows of data , DB : 37 
+## [1] 18053
+##  
+## Data distribution each probes,  DB : 37 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        74 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       275 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      9814 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6570 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                      1010 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        32 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        11 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        10 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       234 
+##  
+## Count duplicated data (True means any duplicated data), DB : 37 
+##    Mode   FALSE    NA&#39;s 
+## logical   18053       0 
+##  
+## Printing file infromation DB : 38 
+##              size               mtime
+## x (38).db 1814528 2014-06-18 12:06:16
+##  
+## Printing Number of rows of data , DB : 38 
+## [1] 12572
+##  
+## Data distribution each probes,  DB : 38 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        66 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        11 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        11 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6931 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4548 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       723 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        28 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         6 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       228 
+##  
+## Count duplicated data (True means any duplicated data), DB : 38 
+##    Mode   FALSE    NA&#39;s 
+## logical   12572       0 
+##  
+## Printing file infromation DB : 39 
+##              size               mtime
+## x (39).db 2547712 2014-06-18 13:06:28
+##  
+## Printing Number of rows of data , DB : 39 
+## [1] 17665
+##  
+## Data distribution each probes,  DB : 39 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        89 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         2 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      9034 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      7386 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       882 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        35 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        21 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        20 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       170 
+##  
+## Count duplicated data (True means any duplicated data), DB : 39 
+##    Mode   FALSE    NA&#39;s 
+## logical   17665       0 
+##  
+## Printing file infromation DB : 40 
+##              size               mtime
+## x (40).db 2736128 2014-06-18 14:06:16
+##  
+## Printing Number of rows of data , DB : 40 
+## [1] 18926
+##  
+## Data distribution each probes,  DB : 40 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        80 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        11 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         4 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      9822 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      7811 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       883 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        28 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        19 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                        20 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       237 
+##  
+## Count duplicated data (True means any duplicated data), DB : 40 
+##    Mode   FALSE    NA&#39;s 
+## logical   18926       0 
+##  
+## Printing file infromation DB : 41 
+##              size               mtime
+## x (41).db 1499136 2014-06-18 14:27:27
+##  
+## Printing Number of rows of data , DB : 41 
+## [1] 7040
+##  
+## Data distribution each probes,  DB : 41 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        37 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       359 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         3 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                        41 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         3 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       499 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         1 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      3544 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      1942 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       324 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                         5 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         5 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       234 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        43 
+##  
+## Count duplicated data (True means any duplicated data), DB : 41 
+##    Mode   FALSE    NA&#39;s 
+## logical    7040       0 
+##  
+## Printing file infromation DB : 42 
+##              size               mtime
+## x (42).db 4628480 2014-06-18 15:07:20
+##  
+## Printing Number of rows of data , DB : 42 
+## [1] 12071
+##  
+## Data distribution each probes,  DB : 42 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        50 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       359 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                         7 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         3 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                       138 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                         3 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                       529 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       828 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         2 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      4707 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4206 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       500 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                         8 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       648 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        75 
+##  
+## Count duplicated data (True means any duplicated data), DB : 42 
+##    Mode   FALSE    TRUE    NA&#39;s 
+## logical   11941     130       0 
+##  
+## Printing file infromation DB : 43 
+##              size               mtime
+## x (43).db 4841472 2014-06-18 16:06:18
+##  
+## Printing Number of rows of data , DB : 43 
+## [1] 17154
+##  
+## Data distribution each probes,  DB : 43 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        97 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        12 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                        55 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                        71 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                       832 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      8720 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6040 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       688 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        14 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        12 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                       356 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       230 
+##  
+## Count duplicated data (True means any duplicated data), DB : 43 
+##    Mode   FALSE    NA&#39;s 
+## logical   17154       0 
+##  
+## Printing file infromation DB : 44 
+##              size               mtime
+## x (44).db 2359296 2014-06-18 17:06:19
+##  
+## Printing Number of rows of data , DB : 44 
+## [1] 16150
+##  
+## Data distribution each probes,  DB : 44 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        79 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      8649 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      6393 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       663 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        12 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        21 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       289 
+##  
+## Count duplicated data (True means any duplicated data), DB : 44 
+##    Mode   FALSE    NA&#39;s 
+## logical   16150       0 
+##  
+## Printing file infromation DB : 45 
+##              size               mtime
+## x (45).db 1880064 2014-06-18 18:06:21
+##  
+## Printing Number of rows of data , DB : 45 
+## [1] 12699
+##  
+## Data distribution each probes,  DB : 45 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        74 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6192 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5424 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       651 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        15 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         3 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         4 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       300 
+##  
+## Count duplicated data (True means any duplicated data), DB : 45 
+##    Mode   FALSE    NA&#39;s 
+## logical   12699       0 
+##  
+## Printing file infromation DB : 46 
+##              size               mtime
+## x (46).db 1765376 2014-06-18 19:06:18
+##  
+## Printing Number of rows of data , DB : 46 
+## [1] 12329
+##  
+## Data distribution each probes,  DB : 46 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        54 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        11 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         4 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6679 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4759 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       639 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        30 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        10 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         8 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       124 
+##  
+## Count duplicated data (True means any duplicated data), DB : 46 
+##    Mode   FALSE    NA&#39;s 
+## logical   12329       0 
+##  
+## Printing file infromation DB : 47 
+##              size               mtime
+## x (47).db 1859584 2014-06-18 20:06:25
+##  
+## Printing Number of rows of data , DB : 47 
+## [1] 13066
+##  
+## Data distribution each probes,  DB : 47 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        56 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6988 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5252 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       676 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        28 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         2 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        37 
+##  
+## Count duplicated data (True means any duplicated data), DB : 47 
+##    Mode   FALSE    NA&#39;s 
+## logical   13066       0 
+##  
+## Printing file infromation DB : 48 
+##              size               mtime
+## x (48).db 1925120 2014-06-18 21:06:25
+##  
+## Printing Number of rows of data , DB : 48 
+## [1] 13670
+##  
+## Data distribution each probes,  DB : 48 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        68 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      7762 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      4992 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       722 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        31 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        11 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         6 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        12 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        54 
+##  
+## Count duplicated data (True means any duplicated data), DB : 48 
+##    Mode   FALSE    NA&#39;s 
+## logical   13670       0 
+##  
+## Printing file infromation DB : 49 
+##              size               mtime
+## x (49).db 2240512 2014-06-18 22:06:18
+##  
+## Printing Number of rows of data , DB : 49 
+## [1] 13518
+##  
+## Data distribution each probes,  DB : 49 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        68 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                       359 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        12 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6964 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5320 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       642 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        28 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                        16 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         6 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        11 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                        92 
+##  
+## Count duplicated data (True means any duplicated data), DB : 49 
+##    Mode   FALSE    NA&#39;s 
+## logical   13518       0 
+##  
+## Printing file infromation DB : 50 
+##              size               mtime
+## x (50).db 1835008 2014-06-18 23:06:20
+##  
+## Printing Number of rows of data , DB : 50 
+## [1] 12476
+##  
+## Data distribution each probes,  DB : 50 
+## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                        68 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                        13 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                         4 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                      6117 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                      5356 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                       648 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                        33 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                         5 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                         2 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                        13 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                       217 
+##  
+## Count duplicated data (True means any duplicated data), DB : 50 
+##    Mode   FALSE    NA&#39;s 
+## logical   12476       0
+</code></pre>
+
+<pre><code>## [[1]]
+##    Mode   FALSE    NA&#39;s 
+## logical       1       0 
+## 
+## [[2]]
+##    Mode   FALSE    TRUE    NA&#39;s 
+## logical    1989     211       0 
+## 
+## [[3]]
+##    Mode   FALSE    NA&#39;s 
+## logical   14487       0 
+## 
+## [[4]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13626       0 
+## 
+## [[5]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13290       0 
+## 
+## [[6]]
+##    Mode   FALSE    NA&#39;s 
+## logical   19553       0 
+## 
+## [[7]]
+##    Mode   FALSE    NA&#39;s 
+## logical   15516       0 
+## 
+## [[8]]
+##    Mode   FALSE    NA&#39;s 
+## logical   16267       0 
+## 
+## [[9]]
+##    Mode   FALSE    NA&#39;s 
+## logical   15623       0 
+## 
+## [[10]]
+##    Mode   FALSE    NA&#39;s 
+## logical   19102       0 
+## 
+## [[11]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12751       0 
+## 
+## [[12]]
+##    Mode   FALSE    NA&#39;s 
+## logical   14789       0 
+## 
+## [[13]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13658       0 
+## 
+## [[14]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13378       0 
+## 
+## [[15]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12279       0 
+## 
+## [[16]]
+##    Mode   FALSE    NA&#39;s 
+## logical   14873       0 
+## 
+## [[17]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12415       0 
+## 
+## [[18]]
+##    Mode   FALSE    NA&#39;s 
+## logical    9139       0 
+## 
+## [[19]]
+##    Mode   FALSE    NA&#39;s 
+## logical   19033       0 
+## 
+## [[20]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13752       0 
+## 
+## [[21]]
+##    Mode   FALSE    NA&#39;s 
+## logical    9959       0 
+## 
+## [[22]]
+##    Mode   FALSE    NA&#39;s 
+## logical   16150       0 
+## 
+## [[23]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12447       0 
+## 
+## [[24]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12364       0 
+## 
+## [[25]]
+##    Mode   FALSE    NA&#39;s 
+## logical    9669       0 
+## 
+## [[26]]
+##    Mode   FALSE    NA&#39;s 
+## logical   11055       0 
+## 
+## [[27]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13833       0 
+## 
+## [[28]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12463       0 
+## 
+## [[29]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13786       0 
+## 
+## [[30]]
+##    Mode   FALSE    NA&#39;s 
+## logical    2231       0 
+## 
+## [[31]]
+##    Mode   FALSE    NA&#39;s 
+## logical   23453       0 
+## 
+## [[32]]
+##    Mode   FALSE    NA&#39;s 
+## logical   20408       0 
+## 
+## [[33]]
+##    Mode   FALSE    NA&#39;s 
+## logical   17837       0 
+## 
+## [[34]]
+##    Mode   FALSE    NA&#39;s 
+## logical   16772       0 
+## 
+## [[35]]
+##    Mode   FALSE    NA&#39;s 
+## logical   20128       0 
+## 
+## [[36]]
+##    Mode   FALSE    NA&#39;s 
+## logical   15932       0 
+## 
+## [[37]]
+##    Mode   FALSE    NA&#39;s 
+## logical   18053       0 
+## 
+## [[38]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12572       0 
+## 
+## [[39]]
+##    Mode   FALSE    NA&#39;s 
+## logical   17665       0 
+## 
+## [[40]]
+##    Mode   FALSE    NA&#39;s 
+## logical   18926       0 
+## 
+## [[41]]
+##    Mode   FALSE    NA&#39;s 
+## logical    7040       0 
+## 
+## [[42]]
+##    Mode   FALSE    TRUE    NA&#39;s 
+## logical   11941     130       0 
+## 
+## [[43]]
+##    Mode   FALSE    NA&#39;s 
+## logical   17154       0 
+## 
+## [[44]]
+##    Mode   FALSE    NA&#39;s 
+## logical   16150       0 
+## 
+## [[45]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12699       0 
+## 
+## [[46]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12329       0 
+## 
+## [[47]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13066       0 
+## 
+## [[48]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13670       0 
+## 
+## [[49]]
+##    Mode   FALSE    NA&#39;s 
+## logical   13518       0 
+## 
+## [[50]]
+##    Mode   FALSE    NA&#39;s 
+## logical   12476       0
+</code></pre>
+
+<p>Big question, why in df2 and df42 we have duplicated data : 211 and 130 , I dont know exactly but after i analyze i find some information, i just think maybe this is any error so this application records two time for historical data, but from others data we dont have duplicated data for each db.</p>
+
+<p>So I try to find where duplicated data came from </p>
+
+<p>DB df2</p>
+
+<pre><code class="r">df2call &lt;- subset(df2, df2$name==&quot;edu.mit.media.funf.probe.builtin.CallLogProbe&quot;)
+df2sms &lt;- subset(df2, df2$name==&quot;edu.mit.media.funf.probe.builtin.SmsProbe&quot;)
+df2bookmark &lt;- subset(df2, df2$name==&quot;edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe&quot;)
+df2seach &lt;- subset(df2, df2$name==&quot;edu.mit.media.funf.probe.builtin.BrowserSearchesProbe&quot;)
+
+
+nrow(df2call)
+</code></pre>
+
+<pre><code>## [1] 523
+</code></pre>
+
+<pre><code class="r">nrow(df2sms)
+</code></pre>
+
+<pre><code>## [1] 322
+</code></pre>
+
+<pre><code class="r">nrow(df2bookmark)
+</code></pre>
+
+<pre><code>## [1] 190
+</code></pre>
+
+<pre><code class="r">nrow(df2seach)
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df2[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical    1989     211       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df2call[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     390     133       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df2sms[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     275      47       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df2bookmark[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     162      28       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df2seach[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical       3       3       0
+</code></pre>
+
+<p>No we can find it, duplicated data from (calllog, smsprobe, browserbookmar, browsersearch) values(133+47+28+3) total 211. </p>
+
+<p>DB df42</p>
+
+<pre><code class="r">df42call &lt;- subset(df42, df42$name==&quot;edu.mit.media.funf.probe.builtin.CallLogProbe&quot;)
+df42sms &lt;- subset(df42, df42$name==&quot;edu.mit.media.funf.probe.builtin.SmsProbe&quot;)
+df42bookmark &lt;- subset(df42, df42$name==&quot;edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe&quot;)
+df42seach &lt;- subset(df42, df42$name==&quot;edu.mit.media.funf.probe.builtin.BrowserSearchesProbe&quot;)
+
+
+nrow(df42call)
+</code></pre>
+
+<pre><code>## [1] 529
+</code></pre>
+
+<pre><code class="r">nrow(df42sms)
+</code></pre>
+
+<pre><code>## [1] 648
+</code></pre>
+
+<pre><code class="r">nrow(df42bookmark)
+</code></pre>
+
+<pre><code>## [1] 138
+</code></pre>
+
+<pre><code class="r">nrow(df42seach)
+</code></pre>
+
+<pre><code>## [1] 3
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df42[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical   11941     130       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df42call[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     428     101       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df42sms[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     619      29       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df42bookmark[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    NA&#39;s 
+## logical     138       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(df42seach[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    NA&#39;s 
+## logical       3       0
+</code></pre>
+
+<p>Now we know duplicated data in df42 came from calllog(101) and smslog(29) total 130</p>
+
+<p>Both of them should dont have duplicated data for each db. (I dont know why?)</p>
+
+<p>This is for merging data (merging 50 dbs)</p>
+
+<pre><code class="r">idfall &lt;- file.info(&quot;merge.db&quot;)
+idfall[c(1,4)]
+</code></pre>
+
+<pre><code>##              size               mtime
+## merge.db 91537408 2014-06-19 16:07:22
+</code></pre>
+
+<pre><code class="r">nrow(dfall)
+</code></pre>
+
+<pre><code>## [1] 509862
+</code></pre>
+
+<pre><code class="r">table(dfall$name)
+</code></pre>
+
+<pre><code>## 
+##            edu.mit.media.funf.probe.builtin.ActivityProbe 
+##                                                      2321 
+##        edu.mit.media.funf.probe.builtin.ApplicationsProbe 
+##                                                      3636 
+##             edu.mit.media.funf.probe.builtin.BatteryProbe 
+##                                                       421 
+##           edu.mit.media.funf.probe.builtin.BluetoothProbe 
+##                                                       212 
+##    edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe 
+##                                                       775 
+##     edu.mit.media.funf.probe.builtin.BrowserSearchesProbe 
+##                                                        21 
+##             edu.mit.media.funf.probe.builtin.CallLogProbe 
+##                                                      3238 
+##             edu.mit.media.funf.probe.builtin.ContactProbe 
+##                                                      4988 
+##        edu.mit.media.funf.probe.builtin.HardwareInfoProbe 
+##                                                         9 
+##         edu.mit.media.funf.probe.builtin.LightSensorProbe 
+##                                                    261923 
+## edu.mit.media.funf.probe.builtin.MagneticFieldSensorProbe 
+##                                                    195321 
+##      edu.mit.media.funf.probe.builtin.PressureSensorProbe 
+##                                                     25705 
+##     edu.mit.media.funf.probe.builtin.ProximitySensorProbe 
+##                                                       785 
+## edu.mit.media.funf.probe.builtin.RunningApplicationsProbe 
+##                                                       269 
+##              edu.mit.media.funf.probe.builtin.ScreenProbe 
+##                                                       155 
+##      edu.mit.media.funf.probe.builtin.SimpleLocationProbe 
+##                                                       423 
+##                 edu.mit.media.funf.probe.builtin.SmsProbe 
+##                                                      3759 
+##                edu.mit.media.funf.probe.builtin.WifiProbe 
+##                                                      5901
+</code></pre>
+
+<pre><code class="r">summary(duplicated(dfall[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical  503798    6064       0
+</code></pre>
+
+<pre><code class="r">names(dfall)
+</code></pre>
+
+<pre><code>## [1] &quot;_id&quot;       &quot;name&quot;      &quot;timestamp&quot; &quot;value&quot;
+</code></pre>
+
+<p>Then After we mergeng db, we have 6064 duplicated data, so where they came from?</p>
+
+<pre><code class="r">dfallcall &lt;- subset(dfall, dfall$name==&quot;edu.mit.media.funf.probe.builtin.CallLogProbe&quot;)
+dfallsms &lt;- subset(dfall, dfall$name==&quot;edu.mit.media.funf.probe.builtin.SmsProbe&quot;)
+dfallbookmark &lt;- subset(dfall, dfall$name==&quot;edu.mit.media.funf.probe.builtin.BrowserBookmarksProbe&quot;)
+dfallsearch &lt;- subset(dfall, dfall$name==&quot;edu.mit.media.funf.probe.builtin.BrowserSearchesProbe&quot;)
+
+
+nrow(dfallcall)
+</code></pre>
+
+<pre><code>## [1] 3238
+</code></pre>
+
+<pre><code class="r">nrow(dfallsms)
+</code></pre>
+
+<pre><code>## [1] 3759
+</code></pre>
+
+<pre><code class="r">nrow(dfallbookmark)
+</code></pre>
+
+<pre><code>## [1] 775
+</code></pre>
+
+<pre><code class="r">nrow(dfallsearch)
+</code></pre>
+
+<pre><code>## [1] 21
+</code></pre>
+
+<pre><code class="r">summary(duplicated(dfall[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical  503798    6064       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(dfallcall[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     499    2739       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(dfallsms[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     620    3139       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(dfallbookmark[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical     607     168       0
+</code></pre>
+
+<pre><code class="r">summary(duplicated(dfallsearch[,c(2,4)]))
+</code></pre>
+
+<pre><code>##    Mode   FALSE    TRUE    NA&#39;s 
+## logical       3      18       0
+</code></pre>
+
+</body>
+
+</html>
+
