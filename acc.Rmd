@@ -1,0 +1,72 @@
+Accelerometer Plot Example
+========================================================
+
+Created by 
+
+**Rischan Mafrur**
+
+Chonnam National University of South Korea
+
+August 6, 2014
+```{r}
+library(ggplot2)
+library(scales)
+
+setwd('C:/Users/rischan/Dropbox/RESEARCH/magno/data/nexus/1_jalan_masuk_7_9')
+setwd('C:/Users/rischan/Dropbox/RESEARCH/magno/data/note II/1_masuk_jalan_7_9')
+acc <- read.csv(file="Sensor_record_20140709_150401_AndroSensor.csv")
+```
+
+Show the sample data
+```{r}
+head(acc)
+```
+
+Select the data which we only need it.
+```{r}
+dacc <- data.frame(acc$ACCELEROMETER.X..m.sÂ².,acc$ACCELEROMETER.Y..m.sÂ².,
+                   acc$ACCELEROMETER.Z..m.sÂ².,acc$MAGNETIC.FIELD.X..Î.T.,
+                   acc$MAGNETIC.FIELD.Y..Î.T.,acc$MAGNETIC.FIELD.Z..Î.T.,
+                   acc$YYYY.MO.DD.HH.MI.SS_SSS)
+
+names(dacc) <- c("accX","accY","accZ","mX","mY","mZ","time")
+```
+
+show the new data "dacc"
+```{r}
+head(dacc,10)
+```
+
+Before we plot the data we have to change the time format from factor to posixct, 
+```{r}
+class(dacc$time)
+```
+Change to POSIXct format
+```{r}
+dacc$time <- strptime(gsub(":(?!\\d+:)", ".", as.character(dacc$time), perl=T), "%Y-%m-%d %H:%M:%OS")
+```
+
+Show class of data 
+```{r}
+class(dacc$time)
+head(dacc,10)
+```
+
+Now we can Plot it, in this document we use ggplot 
+```{r}
+p <- ggplot(dacc, aes(dacc$time, dacc$accX)) +
+     geom_line() + scale_x_datetime(breaks=date_breaks("5 sec"), labels = date_format("%H:%M:%S")) + xlab("Time") +
+     ylab("Accelerometer X")
+p
+     
+
+p <- ggplot(dacc, aes(dacc$time, dacc$accY)) +
+     geom_line() + scale_x_datetime(breaks=date_breaks("5 sec"), labels = date_format("%H:%M:%S")) + xlab("Time") +
+     ylab("Accelerometer Y")
+p
+
+p <- ggplot(dacc, aes(dacc$time, dacc$accZ)) +
+     geom_line() + scale_x_datetime(breaks=date_breaks("5 sec"), labels = date_format("%H:%M:%S")) + xlab("Time") +
+     ylab("Accelerometer X")
+p
+```
