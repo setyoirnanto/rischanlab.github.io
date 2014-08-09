@@ -213,6 +213,36 @@ y &lt;- Species
 
 <p>Create SVM Model and show summary </p>
 
+<pre><code class="r">svm_model &lt;- svm(Species ~ ., data=iris)
+summary(svm_model)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## svm(formula = Species ~ ., data = iris)
+## 
+## 
+## Parameters:
+##    SVM-Type:  C-classification 
+##  SVM-Kernel:  radial 
+##        cost:  1 
+##       gamma:  0.25 
+## 
+## Number of Support Vectors:  51
+## 
+##  ( 8 22 21 )
+## 
+## 
+## Number of Classes:  3 
+## 
+## Levels: 
+##  setosa versicolor virginica
+</code></pre>
+
+<p>Or you can use command like this </p>
+
+<p>Create SVM Model and show summary </p>
+
 <pre><code class="r">svm_model1 &lt;- svm(x,y)
 summary(svm_model1)
 </code></pre>
@@ -243,6 +273,77 @@ summary(svm_model1)
 
 <pre><code class="r">pred &lt;- predict(svm_model1,x)
 system.time(pred &lt;- predict(svm_model1,x))
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##       0       0       0
+</code></pre>
+
+<p>See the confusion matrix result of prediction, using command table to compare the result of SVM prediction and the class data in y variable.</p>
+
+<pre><code class="r">table(pred,y)
+</code></pre>
+
+<pre><code>##             y
+## pred         setosa versicolor virginica
+##   setosa         50          0         0
+##   versicolor      0         48         2
+##   virginica       0          2        48
+</code></pre>
+
+<p>TUning SVM to find the best cost and gamma ..</p>
+
+<pre><code class="r">svm_tune &lt;- tune(svm, train.x=x, train.y=y, 
+              kernel=&quot;radial&quot;, ranges=list(cost=10^(-1:2), gamma=c(.5,1,2)))
+
+print(svm_tune)
+</code></pre>
+
+<pre><code>## 
+## Parameter tuning of &#39;svm&#39;:
+## 
+## - sampling method: 10-fold cross validation 
+## 
+## - best parameters:
+##  cost gamma
+##     1   0.5
+## 
+## - best performance: 0.05333
+</code></pre>
+
+<p>After you find the best cost and gamma, you can create svm model again and try to run again</p>
+
+<pre><code class="r">svm_model_after_tune &lt;- svm(Species ~ ., data=iris, kernel=&quot;radial&quot;, cost=1, gamma=0.5)
+summary(svm_model_after_tune)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## svm(formula = Species ~ ., data = iris, kernel = &quot;radial&quot;, cost = 1, 
+##     gamma = 0.5)
+## 
+## 
+## Parameters:
+##    SVM-Type:  C-classification 
+##  SVM-Kernel:  radial 
+##        cost:  1 
+##       gamma:  0.5 
+## 
+## Number of Support Vectors:  59
+## 
+##  ( 11 23 25 )
+## 
+## 
+## Number of Classes:  3 
+## 
+## Levels: 
+##  setosa versicolor virginica
+</code></pre>
+
+<p>Run Prediction again with new model</p>
+
+<pre><code class="r">pred &lt;- predict(svm_model_after_tune,x)
+system.time(predict(svm_model_after_tune,x))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
