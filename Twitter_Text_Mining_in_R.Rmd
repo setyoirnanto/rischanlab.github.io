@@ -1,0 +1,88 @@
+Twitter Text Mining in R | Mining Twitter with R
+========================================================
+
+In this document I use same data with in this link -> http://rischanlab.github.io/Retweet_Graph.html
+
+For more information
+#Setup your twitter account
+
+see -> http://rischanlab.github.io/twitteR.html
+
+After you setup your twitter account just try to get data with contain “SaveGaza”. But in this document I save the data first, because If I direct setup my twitter account in this document, knitr not supported because we have to input some code when we try to hand sake to Twitter API. please read the guide in link above to set up your twitter account in R. if you have error message “unautorized” Try to change the permission in your twitter application to “Read, write, and Direct Message”
+
+#Load data 
+
+```{r}
+library(twitteR)
+setwd("C:/Users/rischan/Dropbox/RESEARCH/rischanlab.github.io")
+load("dm_tweets.Rdata")
+head(dm_tweets,10)
+```
+
+#Transforming Text
+
+```{r}
+df <- do.call("rbind", lapply(dm_tweets, as.data.frame))
+dim(df)
+```
+
+Load library text mining in R
+```{r}
+library(tm)
+```
+
+Transforming Text to Corpus
+```{r}
+myCorpus <- Corpus(VectorSource(df$text))
+```
+
+#Running standard text mining method -> changing letters to lower case, removing punctuations/numbers and removing stop words.
+
+```{r}
+myCorpus <- tm_map(myCorpus, tolower)
+myCorpus <- tm_map(myCorpus, removePunctuation)
+myCorpus <- tm_map(myCorpus, removePunctuation)
+#in this case I just use standard stop word and adding three more stop word for giving example how to adding new stop word. If you have more stop word you can adding like that or try to save in one vector object.
+myStopwords <- c(stopwords('english'), "and", "yes","no")
+#removing word from stop word, for example in this case the word "Zion"
+idx <- which(myStopwords == "zion")
+myStopwords <- myStopwords[-idx]
+myCorpus <- tm_map(myCorpus, removeWords, myStopwords)
+
+```
+
+#Stemming Words
+```{r}
+dictCorpus <- myCorpus
+myCorpus <- tm_map(myCorpus, stemDocument)
+inspect(myCorpus[1:3])
+myCorpus <- tm_map(myCorpus, stemCompletion, dictionary=dictCorpus)
+
+#print again after completion
+inspect(myCorpus[1:3])
+
+```
+#Building a Document-Term Matrix
+```{r}
+myDtm <- TermDocumentMatrix(myCorpus, control = list(minWordLength = 1))
+inspect(myDtm[266:270,31:40])
+
+```
+#Frequent Terms and Associations
+```{r}
+findFreqTerms(myDtm, lowfreq=10)
+findAssocs(myDtm, 'zion', 0.30)
+findAssocs(myDtm, 'Gaza', 0.30)
+```
+#Building and Plotting Word Cloud
+```{r}
+library(wordcloud)
+m <- as.matrix(myDtm)
+v <- sort(rowSums(m), decreasing=TRUE)
+myNames <- names(v)
+k <- which(names(v)=="Gaza")
+myNames[k] <- "Palestine"
+d <- data.frame(word=myNames, freq=v)
+wordcloud(d$word, d$freq, min.freq=3)
+
+```
