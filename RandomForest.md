@@ -33,9 +33,9 @@ table(predict(iris_rf),trainData$Species)
 ```
 ##             
 ##              setosa versicolor virginica
-##   setosa         40          0         0
-##   versicolor      0         34         4
-##   virginica       0          3        30
+##   setosa         31          0         0
+##   versicolor      0         36         4
+##   virginica       0          3        34
 ```
 
 Try to print Random Forest model and see the importance features
@@ -52,12 +52,12 @@ print(iris_rf)
 ##                      Number of trees: 100
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 6.31%
+##         OOB estimate of  error rate: 6.48%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         40          0         0     0.00000
-## versicolor      0         34         3     0.08108
-## virginica       0          4        30     0.11765
+## setosa         31          0         0     0.00000
+## versicolor      0         36         3     0.07692
+## virginica       0          4        34     0.10526
 ```
 
 ```r
@@ -72,10 +72,10 @@ importance(iris_rf)
 
 ```
 ##              MeanDecreaseGini
-## Sepal.Length            6.905
-## Sepal.Width             2.193
-## Petal.Length           35.081
-## Petal.Width            28.867
+## Sepal.Length            6.805
+## Sepal.Width             2.608
+## Petal.Length           34.951
+## Petal.Width            26.511
 ```
 
 ```r
@@ -94,9 +94,9 @@ table(irisPred, testData$Species)
 ```
 ##             
 ## irisPred     setosa versicolor virginica
-##   setosa         10          0         0
-##   versicolor      0         13         2
-##   virginica       0          0        14
+##   setosa         19          0         0
+##   versicolor      0         11         1
+##   virginica       0          0        11
 ```
 Try to see the margin, positive or negative, if positif it means correct classification
 
@@ -113,3 +113,52 @@ plot(margin(iris_rf,testData$Species))
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
+
+Try to tune Random Forest
+
+```r
+tune.rf <- tuneRF(iris[,-5],iris[,5], stepFactor=0.5)
+```
+
+```
+## mtry = 2  OOB error = 6.67% 
+## Searching left ...
+## mtry = 4 	OOB error = 4.67% 
+## 0.3 0.05
+```
+
+```
+## Warning: invalid mtry: reset to within valid range
+```
+
+```
+## mtry = 8 	OOB error = 4% 
+## 0.1429 0.05
+```
+
+```
+## Warning: invalid mtry: reset to within valid range
+```
+
+```
+## mtry = 16 	OOB error = 4% 
+## 0 0.05 
+## Searching right ...
+## mtry = 1 	OOB error = 6% 
+## -0.5 0.05
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
+
+```r
+print(tune.rf)
+```
+
+```
+##        mtry OOBError
+## 1.OOB     1  0.06000
+## 2.OOB     2  0.06667
+## 4.OOB     4  0.04667
+## 8.OOB     8  0.04000
+## 16.OOB   16  0.04000
+```

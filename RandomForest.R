@@ -27,3 +27,6 @@ irisPred<-predict(iris_rf,newdata=testData)
 table(irisPred, testData$Species)
 
 plot(margin(iris_rf,testData$Species))
+
+tune.rf <- tuneRF(iris[,-5],iris[,5],  mtry=2, ntreeTry=100, stepFactor=2, improve=0.05)
+print(tune.rf)

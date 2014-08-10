@@ -39,3 +39,10 @@ Try to see the margin, positive or negative, if positif it means correct classif
 ```{r}
 plot(margin(iris_rf,testData$Species))
 ```
+
+Try to tune Random Forest
+```{r}
+
+tune.rf <- tuneRF(iris[,-5],iris[,5], stepFactor=0.5)
+print(tune.rf)
+```
