@@ -8,27 +8,7 @@ library(stringr)
 
 #Login to your tweet account in R
 
-reqURL <- "https://api.twitter.com/oauth/request_token"
-accessURL <- "https://api.twitter.com/oauth/access_token"
-authURL <- "https://api.twitter.com/oauth/authorize"
-consumerKey <- "JiefU2xYpGU0NH7EqQVVNJj9C"
-consumerSecret <- "bjksuguVmejEdq4qyxlLvAxFgm9cP6T7mz7Ai0q0FIdCYr3OmF"
-twitCred <- OAuthFactory$new(consumerKey=consumerKey,
-                             consumerSecret=consumerSecret,
-                             requestURL=reqURL,
-                             accessURL=accessURL,
-                             authURL=authURL)
-download.file(url="http://curl.haxx.se/ca/cacert.pem",
-              destfile="cacert.pem")
-twitCred$handshake(cainfo="cacert.pem")
 
-registerTwitterOAuth(twitCred)
-user <- getUser("rischanmafrur")
-
-# Getting tweets data in english containing "SaveGaza"
-dm_tweets = searchTwitter("SaveGaza", n=500, lang="en",cainfo="cacert.pem") 
-setwd("C:/Users/rischan/Dropbox/RESEARCH/rischanlab.github.io")
-save(dm_tweets, file="dm_tweets.Rdata")
 
 list.files()
 
