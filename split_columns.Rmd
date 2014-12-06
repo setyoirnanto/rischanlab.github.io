@@ -1,0 +1,83 @@
+---
+title: "split_columns.Rmd"
+author: "Rischan Mafrur"
+date: "Saturday, December 06, 2014"
+output: html_document
+---
+
+Last time my friend asked me about, how to split one columns in R dataframe to two columns.
+The example of data is looks like: 
+
+```{r}
+df <- structure(list(V1 = structure(c(2L, 1L, 3L), .Label = c("Andi", 
+      "Bejo", "Rudi"), class = "factor"), V2 = structure(1:3, .Label = c("AA", 
+      "AB", "TT"), class = "factor"), V3 = structure(1:3, .Label = c("AB", 
+       "BB", "GG"), class = "factor"), V4 = structure(1:3, .Label = c("BB", 
+        "CC", "CD"), class = "factor")), .Names = c("V1", "V2", "V3", 
+        "V4"), class = "data.frame", row.names = c(NA, -3L))
+```
+
+Show example data: 
+```{r}
+df
+```
+
+Based on this dataframe we can use stupid way such as using "substr" the code looks like:
+```{r}
+#first columns (the format is factor, so I convert it to characters)
+a <- as.character(df$V1)
+#second columns, we want to split this column to two columns, we use substr to get value
+b <- substr(df$V2,1,1)
+c <- substr(df$V2,2,2)
+
+#third columns, we did samething with that we did for second columns
+d <- substr(df$V3,1,1)
+e <- substr(df$V3,2,2)
+
+#forth columns, as well as previous columns, we split one columns to two columns. and we use substr for getting value
+f <- substr(df$V4,1,1)
+g <- substr(df$V4,2,2)
+
+#Join vector (columns) to one matrix
+new_matrix <- cbind(a,b,c,d,e,f,g)
+```
+
+After we create new matrix, we can convert it to dataframe, using code like this: 
+```{r}
+new_df <- as.data.frame(new_matrix)
+#to rename columns, you can use names(new_df), please look in previous tutorial if you did not know.
+
+```
+
+Now, we have new dataframe as we want. 
+```{r}
+new_df
+
+```
+
+The problem came when my friend said that he has 5000 columns.
+So, how do you think? you want to process 5000 columns data using that ways? it just look like stupid. 
+After looking some information in Google, I found the best way. We can use library "splitstackshape"
+
+First, Install and load that library:
+```{r}
+#install.packages("splitstackshape")
+library("splitstackshape")
+
+```
+
+Use this code:
+```{r}
+new_df2 <- cSplit(df, 2:ncol(df), "", stripWhite = FALSE)
+```
+Just only using one line, now, you get dataframe as you want. 
+see, your new dataframe.
+
+```{r}
+new_df2
+
+```
+
+And now, you can use that syntax to 5000 columns in your dataframe.
+Oke, nice, see you in the next post :) 
+
