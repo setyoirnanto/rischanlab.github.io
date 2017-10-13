@@ -43,29 +43,6 @@ head(dm_tweets,10)
 ## [[2]]
 ## [1] "ahmedraei81: #GazaNeedsLOVE #GazaUnderAttack #ICC4Israel #ISupportGaza #FreePalestine #SaveGaza http://t.co/T1NxIbVoMP"
 ## 
-## [[3]]
-## [1] "Mgeze98: Ya Allah, protect Gaza and it's helpless civilians. ������#SaveGaza #FreePalestine"
-## 
-## [[4]]
-## [1] "LadyLayaa: Israeli warplanes kill more Palestinians in #Gaza #Palestine #SaveGaza #GazaUnderAttack\nhttp://t.co/bQEJRN0AKf http://t.co/M9CX07kCEy"
-## 
-## [[5]]
-## [1] "FShiyaz: RT @rightnowio_feed: An Israeli protester holds a placard  against Israel's act... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #G…"
-## 
-## [[6]]
-## [1] "Right2LeftUK: RT @mina_ysf: 3 were killed after Israel bombed a mosque before early morning prayers (retrieving their bodies) #SaveGaza http://t.co/OmJUl…"
-## 
-## [[7]]
-## [1] "Samir_Latif: RT @DrBasselAbuward: Children of #Gaza VS Children of The World \n#ISupportGaza #prayforgaza #FreePalestine #SaveGaza #GazaUnderAttack http:…"
-## 
-## [[8]]
-## [1] "redfrank1879: RT @PersonalEscrito: ‘Israel deliberately attacks #Gaza medics’ http://t.co/7h5bWGESN4 #ICC4Israel #IsraelIsAWarCriminal #BoycottIsrael #Fr…"
-## 
-## [[9]]
-## [1] "jean_coonan: RT @rightnowio_feed: RT @mina_ysf: Human Rights Watch: Deliberately attacking... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #Gaz…"
-## 
-## [[10]]
-## [1] "layansalloum: RT @raed_selmi: This pic via @wacima_e \nMy friend in London \n#FreePalestine\n#SaveGaza\n#AJAGAZA http://t.co/uJshneT5fO"
 ```
 # Try to show the data 
 
@@ -79,27 +56,6 @@ head(dm_tweets,10)
 ## 
 ## [[2]]
 ## [1] "ahmedraei81: #GazaNeedsLOVE #GazaUnderAttack #ICC4Israel #ISupportGaza #FreePalestine #SaveGaza http://t.co/T1NxIbVoMP"
-## 
-## [[3]]
-## [1] "Mgeze98: Ya Allah, protect Gaza and it's helpless civilians. ������#SaveGaza #FreePalestine"
-## 
-## [[4]]
-## [1] "LadyLayaa: Israeli warplanes kill more Palestinians in #Gaza #Palestine #SaveGaza #GazaUnderAttack\nhttp://t.co/bQEJRN0AKf http://t.co/M9CX07kCEy"
-## 
-## [[5]]
-## [1] "FShiyaz: RT @rightnowio_feed: An Israeli protester holds a placard  against Israel's act... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #G…"
-## 
-## [[6]]
-## [1] "Right2LeftUK: RT @mina_ysf: 3 were killed after Israel bombed a mosque before early morning prayers (retrieving their bodies) #SaveGaza http://t.co/OmJUl…"
-## 
-## [[7]]
-## [1] "Samir_Latif: RT @DrBasselAbuward: Children of #Gaza VS Children of The World \n#ISupportGaza #prayforgaza #FreePalestine #SaveGaza #GazaUnderAttack http:…"
-## 
-## [[8]]
-## [1] "redfrank1879: RT @PersonalEscrito: ‘Israel deliberately attacks #Gaza medics’ http://t.co/7h5bWGESN4 #ICC4Israel #IsraelIsAWarCriminal #BoycottIsrael #Fr…"
-## 
-## [[9]]
-## [1] "jean_coonan: RT @rightnowio_feed: RT @mina_ysf: Human Rights Watch: Deliberately attacking... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #Gaz…"
 ## 
 ## [[10]]
 ## [1] "layansalloum: RT @raed_selmi: This pic via @wacima_e \nMy friend in London \n#FreePalestine\n#SaveGaza\n#AJAGAZA http://t.co/uJshneT5fO"
@@ -134,14 +90,6 @@ head(dm_txt[rt_patterns],10)
 
 ```
 ##  [1] "RT @rightnowio_feed: An Israeli protester holds a placard  against Israel's act... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #G…"    
-##  [2] "RT @mina_ysf: 3 were killed after Israel bombed a mosque before early morning prayers (retrieving their bodies) #SaveGaza http://t.co/OmJUl…"    
-##  [3] "RT @DrBasselAbuward: Children of #Gaza VS Children of The World \n#ISupportGaza #prayforgaza #FreePalestine #SaveGaza #GazaUnderAttack http:…"   
-##  [4] "RT @PersonalEscrito: ‘Israel deliberately attacks #Gaza medics’ http://t.co/7h5bWGESN4 #ICC4Israel #IsraelIsAWarCriminal #BoycottIsrael #Fr…"
-##  [5] "RT @rightnowio_feed: RT @mina_ysf: Human Rights Watch: Deliberately attacking... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #Gaz…"    
-##  [6] "RT @raed_selmi: This pic via @wacima_e \nMy friend in London \n#FreePalestine\n#SaveGaza\n#AJAGAZA http://t.co/uJshneT5fO"                         
-##  [7] "RT @catherinetyley: Huge protest outside the #BBC in #London... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #Gaza via @baggaweed"        
-##  [8] "RT @Iran: #Israel-i warplanes kill more Palestinians in #Gaza #Palestine #SaveGaza #GazaUnderAttack\nhttp://t.co/WNiSFHgtQy http://t.co/meNi…"   
-##  [9] "RT @rightnowio_feed: Roughly 120,000 people marching in Cape Town, South Africa... http://t.co/8ExDeGoDFQ #Sosgaza #Icc4israel #Savegaza #G…"    
 ## [10] "RT @DrBasselAbuward: Children of #Gaza VS Children of The World \n#ISupportGaza #prayforgaza #FreePalestine #SaveGaza #GazaUnderAttack http:…"
 ```
 
